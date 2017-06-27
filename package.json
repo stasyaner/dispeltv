@@ -1,0 +1,26 @@
+{
+  "name": "dispeltv",
+  "version": "0.0.1",
+  "description": "dispeltv streaming app",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasyaner/dispeltv.git"
+  },
+  "keywords": [
+    "streaming",
+    "stream",
+    "rtsp",
+    "webrtc",
+    "sfu"
+  ],
+  "author": "stasyaner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stasyaner/dispeltv/issues"
+  },
+  "homepage": "https://github.com/stasyaner/dispeltv#readme"
+}
