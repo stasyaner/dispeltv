@@ -4,6 +4,7 @@
   "description": "dispeltv streaming app",
   "main": "index.jsx",
   "scripts": {
+    "server": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,14 +14,21 @@
   "keywords": [
     "streaming",
     "stream",
-    "rtsp",
-    "webrtc",
-    "sfu"
+    "rtmp",
+    "hls",
+    "dispel",
+    "tv"
   ],
   "author": "stasyaner",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/stasyaner/dispeltv/issues"
   },
-  "homepage": "https://github.com/stasyaner/dispeltv#readme"
+  "homepage": "https://github.com/stasyaner/dispeltv#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "firebase": "^4.1.3",
+    "hls.js": "^0.7.10"
+  }
 }
