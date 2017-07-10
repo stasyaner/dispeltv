@@ -1,21 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const firebase = require('firebase');
+const firebaseConf = require('./firebaseConf');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-const config = {
-  apiKey: 'AIzaSyAKC_nPLZpAxgStV6z1yZ6i4XU0FleQhiw',
-  authDomain: 'dispeltv.firebaseapp.com',
-  databaseURL: 'https://dispeltv.firebaseio.com',
-  projectId: 'dispeltv',
-  storageBucket: 'dispeltv.appspot.com',
-  messagingSenderId: '763890867563'
-};
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConf);
 
 app.post('/', (req, res) => {
-  firebase.database().ref(`users/${req.body.name}`).on('value', snapshot => {
+  firebase.database().ref(`users/${req.body.name}`).once('value').then(snapshot => {
     const user = snapshot.val();
     if(user) {
       console.log(user);
@@ -24,9 +17,6 @@ app.post('/', (req, res) => {
       res.sendStatus(400);
     }
   });
-  /*.catch(error => {
-    console.log(error);
-  });*/
 });
 
 app.listen(3000, () => {
