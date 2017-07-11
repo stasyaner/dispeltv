@@ -8,10 +8,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 firebase.initializeApp(firebaseConf);
 
 app.post('/', (req, res) => {
-  firebase.database().ref(`users/${req.body.name}`).once('value').then(snapshot => {
+  const userRef = firebase.database().ref(`users/${req.body.name}`);
+  userRef.once('value').then(snapshot => {
     const user = snapshot.val();
     if(user) {
-      console.log(user);
+      const userAvailabilityAndTimestampUpdate = {
+        availability: 'Online',
+        lastAvailableTimestamp: new Date().getTime(),
+      };
+      userRef.
       res.sendStatus(200);
     } else {
       res.sendStatus(400);
