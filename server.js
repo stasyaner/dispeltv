@@ -16,7 +16,7 @@ app.post('/', (req, res) => {
         availability: 'Online',
         lastAvailableTimestamp: new Date().getTime(),
       };
-      userRef.
+      userRef.update(userAvailabilityAndTimestampUpdate);
       res.sendStatus(200);
     } else {
       res.sendStatus(400);
