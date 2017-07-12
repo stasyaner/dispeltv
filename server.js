@@ -7,16 +7,32 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 firebase.initializeApp(firebaseConf);
 
-app.post('/', (req, res) => {
+app.post('/publish', (req, res) => {
   const userRef = firebase.database().ref(`users/${req.body.name}`);
   userRef.once('value').then(snapshot => {
     const user = snapshot.val();
     if(user) {
-      const userAvailabilityAndTimestampUpdate = {
-        availability: 'Online',
-        lastAvailableTimestamp: new Date().getTime(),
+      const userStatusAndTimestampUpdate = {
+        status: 'Online',
+        lastActiveTimestamp: new Date().getTime(),
       };
-      userRef.update(userAvailabilityAndTimestampUpdate);
+      userRef.update(userStatusAndTimestampUpdate);
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(400);
+    }
+  });
+});
+
+app.post('/publish_done', (req, res) => {
+  const userRef = firebase.database().ref(`users/${req.body.name}`);
+  userRef.once('value').then(snapshot => {
+    const user = snapshot.val();
+    if(user) {
+      const userStatusAndTimestampUpdate = {
+        status: 'Offline',
+      };
+      userRef.update(userStatusAndTimestampUpdate);
       res.sendStatus(200);
     } else {
       res.sendStatus(400);
