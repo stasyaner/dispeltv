@@ -19,7 +19,7 @@ const setUserOnlineTimestampCallback = (req, res) => {
       userRef.update(userStatusAndTimestampUpdate);
       res.sendStatus(200);
     } else {
-      throw new Error('user is not found');
+      throw new Error('User is not found');
       res.sendStatus(401);
     }
   });
