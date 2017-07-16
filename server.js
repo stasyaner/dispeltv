@@ -14,7 +14,7 @@ const setUserOnlineTimestampCallback = (req, res) => {
     if(user) {
       const userStatusAndTimestampUpdate = {
         status: 'Online',
-        lastActiveTimestamp: new Date().getTime(),
+        lastActiveTimestamp: firebase.database.ServerValue.TIMESTAMP,
       };
       userRef.update(userStatusAndTimestampUpdate);
       res.sendStatus(200);
