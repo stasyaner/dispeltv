@@ -9,9 +9,9 @@ firebase.initializeApp(firebaseConf);
 
 const setUserOnlineTimestampCallback = (req, res) => {
   const userRef = firebase.database().ref(`users/${req.body.name}`);
-  userRef.once('value').then(snapshot => {
+  userRef.once('value').then((snapshot) => {
     const user = snapshot.val();
-    if(user) {
+    if (user) {
       const userStatusAndTimestampUpdate = {
         status: 'Online',
         lastActiveTimestamp: firebase.database.ServerValue.TIMESTAMP,
@@ -19,17 +19,17 @@ const setUserOnlineTimestampCallback = (req, res) => {
       userRef.update(userStatusAndTimestampUpdate);
       res.sendStatus(200);
     } else {
-      throw new Error('User is not found');
       res.sendStatus(401);
+      throw new Error('User is not found');
     }
   });
 };
 
-const setUserOfflineCallback = (req, res) => {
+const setUserOfflineCallback = (req) => {
   const userRef = firebase.database().ref(`users/${req.body.name}`);
-  userRef.once('value').then(snapshot => {
+  userRef.once('value').then((snapshot) => {
     const user = snapshot.val();
-    if(user) {
+    if (user) {
       const userStatusUpdate = {
         status: 'Offline',
       };
@@ -44,6 +44,4 @@ app.post('/publish', setUserOnlineTimestampCallback);
 app.post('/update', setUserOnlineTimestampCallback);
 app.post('/publish_done', setUserOfflineCallback);
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-});
+app.listen(3000);
