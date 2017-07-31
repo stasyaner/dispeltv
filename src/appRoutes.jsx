@@ -1,11 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-const test = () => <div>hello</div>;
+import MainContainer from './containers/MainContainer';
 
 const AppRoutes = () => (
   <Switch>
-    <Route exact path="/" component={test} />
+    <Route exact path="/" component={MainContainer} />
   </Switch>
 );
 
