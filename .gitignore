@@ -2,4 +2,5 @@
 log
 node_modules
 hls
-public/*.js
+public/*
+!public/index.html
