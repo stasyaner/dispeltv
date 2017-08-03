@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import 'bootstrap/less/bootstrap';
 import AppRoutes from '../appRoutes';
 
 const Root = ({ store }) => (
