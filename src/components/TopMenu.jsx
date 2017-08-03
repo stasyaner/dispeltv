@@ -1,27 +1,11 @@
 import React from 'react';
-import { Navbar, NavItem, Nav, FormGroup, FormControl, Button } from 'react-bootstrap';
+import topmenu from '../css/TopMenu.scss';
 
 const TopMenu = () => (
-  <Navbar fixedTop>
-    <Navbar.Header>
-      <Navbar.Brand>
-        secured
-      </Navbar.Brand>
-    </Navbar.Header>
-    <Navbar.Collapse>
-      <Navbar.Form pullLeft>
-        <FormGroup>
-          <FormControl type="text" placeholder="Search" />
-        </FormGroup>
-        <Button type="submit">Submit</Button>
-      </Navbar.Form>
-      <Nav>
-        <NavItem>
-          test
-        </NavItem>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+  <ul className="top-menu">
+    <li><span className={topmenu.logo}>DispelTV</span></li>
+    <li>Main</li>
+  </ul>
 );
 
 export default TopMenu;
