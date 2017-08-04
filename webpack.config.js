@@ -31,7 +31,7 @@ let config = {
           loader: 'babel-loader',
           options: {
             presets: [['es2015', { 'modules': false }], 'react'],
-            plugins: ['react-hot-loader/babel']
+            plugins: ['react-hot-loader/babel'],
           },
         }],
       },
@@ -41,8 +41,12 @@ let config = {
         use: [
           'style-loader',
           'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'sass-loader'
+          'sass-loader?includePaths[]=' + path.resolve(__dirname, './node_modules/compass-mixins/lib')
         ]
+      },
+      {
+        test: /\.(ttf|eot|svg|woff|woff2)$/,
+        use: 'file-loader?name=[name].[ext]',
       },
     ],
   },
@@ -76,7 +80,7 @@ let config = {
     }),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') },
-    })
+    }),
   ];
 };
 
