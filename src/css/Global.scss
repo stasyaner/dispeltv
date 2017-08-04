@@ -1,6 +1,9 @@
 @import 'compass/css3';
 
-@include font-face('Open Sans', url('/OpenSans-Regular.ttf'));
+@include font-face('Open Sans', url('/OpenSans.woff2'), false, normal, normal);
+@include font-face('Open Sans', url('/OpenSans-Bold.woff2'), false, bold, normal);
+@include font-face('Open Sans', url('/OpenSans-Italic.woff2'), false, normal, italic);
+@include font-face('Open Sans', url('/OpenSans-BoldItalic.woff2'), false, bold, italic);
 
 body {
   margin: 0;
