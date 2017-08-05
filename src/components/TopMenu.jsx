@@ -16,7 +16,7 @@ const TopMenu = () => (
           <button
             className={style.searchButton}
             type="submit"
-          ><span className={style.glyphSearch12}>&nbsp;</span></button>
+          ><span className={style.glyphSearch}>&nbsp;</span></button>
         </form>
       </li>
     </ul>
