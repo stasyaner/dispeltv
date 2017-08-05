@@ -89,6 +89,7 @@ $search-line-height: 20px;
 
   .glyphSearch {
     background: url('/two-circles.svg') no-repeat center center;
+    background-size: contain;
     display: block;
     height: 100%;
     width: 50px;
