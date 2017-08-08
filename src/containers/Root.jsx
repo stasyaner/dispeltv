@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import AppRoutes from '../appRoutes';
+import MainContainer from './MainContainer';
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <AppRoutes />
+      <Route path="/" component={MainContainer} />
     </Router>
   </Provider>
 );
