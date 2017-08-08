@@ -4,3 +4,7 @@ import './css/fonts/OpenSans-Bold.woff2';
 import './css/fonts/OpenSans-Italic.woff2';
 import './css/fonts/OpenSans-BoldItalic.woff2';
 import './css/icons/two-circles.svg';
+import './css/icons/play.svg';
+import './css/icons/pause.svg';
+import './css/icons/sound.svg';
+import './css/icons/no-sound.svg';
