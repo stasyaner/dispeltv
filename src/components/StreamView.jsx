@@ -19,7 +19,7 @@ const StreamView = ({ isPlaying, isSounding, play, sound }) => (
         <div
           role="button"
           tabIndex="0"
-          className={isPlaying ? style.play : style.pause}
+          className={isPlaying ? style.pause : style.play}
           onClick={play}
         >&nbsp;</div>
         <div
