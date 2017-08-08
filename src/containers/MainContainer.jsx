@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import TopMenu from '../components/TopMenu';
+import StreamContainer from './StreamContainer';
 
 class MainContainer extends Component {
   constructor(...restProps) {
@@ -10,7 +12,7 @@ class MainContainer extends Component {
     return (
       <div className="main-container">
         <TopMenu />
-        {this.props.children}
+        <Route path="/:userName" component={StreamContainer} />
       </div>
     );
   }

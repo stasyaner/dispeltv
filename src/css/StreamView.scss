@@ -1,0 +1,58 @@
+@import 'vars';
+
+@mixin control-button($url) {
+  background: url($url) no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  outline: none;
+  width: 25px;
+}
+
+// As using lisp-case is not convenient in js with css-modules
+// sass-lint:disable class-name-format
+.streamContainer {
+  position: relative;
+
+  .underlay {
+    background-color: $black-color;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video {
+  }
+
+  .overlay {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    .overlayControls {
+      bottom: 10px;
+      height: 20px;
+      left: 10px;
+      position: absolute;
+
+      .play {
+        @include control-button('/play.svg');
+      }
+
+      .pause {
+        @include control-button('/pause.svg');
+      }
+
+      .sound {
+        @include control-button('/sound.svg');
+      }
+
+      .noSound {
+        @include control-button('/no-sound.svg');
+      }
+    }
+  }
+}
