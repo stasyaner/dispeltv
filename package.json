@@ -4,7 +4,7 @@
   "description": "dispeltv streaming app",
   "main": "index.jsx",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --progress --hot --inline",
+    "start": "node_modules/.bin/webpack-dev-server --progress --hot --inline --host 192.168.0.101 --port 8080",
     "build-dev": "node_modules/.bin/webpack -d --watch",
     "server": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
