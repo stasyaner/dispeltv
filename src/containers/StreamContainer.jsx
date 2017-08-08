@@ -22,6 +22,9 @@ class StreamContainer extends Component {
       const hlsInstance = new Hls();
       hlsInstance.loadSource('hls/BaT2Y78F3UbSZF3AL5AIeWonp3F2/index.m3u8');
       hlsInstance.attachMedia(this.video);
+      hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+        this.video.play();
+      });
     }
   }
 
