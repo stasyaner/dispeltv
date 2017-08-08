@@ -1,14 +1,5 @@
 @import 'compass/css3';
-
-$primary-color: #ff8c00;
-$secondary-color: #0969a2;
-$top-menu-link-color: #fff;
-$standart-grey-color: #ccc;
-$white-color: #fff;
-$little-shadow-color: rgba(34, 25, 25, .4);
-$little-shadow: 0 0 1px $little-shadow-color;
-$little-inset-shadow: inset 0 1px 1px 0 lighten($standart-grey-color, 10%);
-$search-line-height: 20px;
+@import 'vars';
 
 // As using lisp-case is not convenient in js with css-modules
 // sass-lint:disable class-name-format
