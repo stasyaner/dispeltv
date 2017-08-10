@@ -6,12 +6,21 @@ const videoStyle = {
   height: window.innerHeight - 47,
 };
 
-const StreamView = ({ isPlaying, isSounding, play, sound }) => (
+const StreamView = ({
+  isPlaying,
+  isSounding,
+  togglePlay,
+  toggleSound,
+  volumeBarWidth,
+  volumeBarMouseDownHandler,
+  connectHls,
+}) => (
   <div className={style.streamContainer}>
     <div className={style.underlay}>
       <video
         className={style.video}
         style={videoStyle}
+        ref={connectHls}
       ></video>
     </div>
     <div className={style.overlay}>
@@ -20,14 +29,25 @@ const StreamView = ({ isPlaying, isSounding, play, sound }) => (
           role="button"
           tabIndex="0"
           className={isPlaying ? style.pause : style.play}
-          onClick={play}
-        >&nbsp;</div>
+          onClick={togglePlay}
+        >{' '}</div>
         <div
           role="button"
           tabIndex="0"
           className={isSounding ? style.sound : style.noSound}
-          onClick={sound}
-        >&nbsp;</div>
+          onClick={toggleSound}
+        >{' '}</div>
+        <div
+          role="button"
+          tabIndex="0"
+          className={style.volume}
+          onMouseDown={volumeBarMouseDownHandler}
+        >
+          <div
+            style={{ width: volumeBarWidth }}
+            className={style.volumeBar}
+          >{' '}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -36,8 +56,11 @@ const StreamView = ({ isPlaying, isSounding, play, sound }) => (
 StreamView.propTypes = {
   isPlaying: propTypes.bool.isRequired,
   isSounding: propTypes.bool.isRequired,
-  play: propTypes.func.isRequired,
-  sound: propTypes.func.isRequired,
+  togglePlay: propTypes.func.isRequired,
+  toggleSound: propTypes.func.isRequired,
+  connectHls: propTypes.func.isRequired,
+  volumeBarWidth: propTypes.string.isRequired,
+  volumeBarMouseDownHandler: propTypes.func.isRequired,
 };
 
 export default StreamView;

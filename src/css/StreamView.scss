@@ -6,7 +6,9 @@
   cursor: pointer;
   float: left;
   height: 100%;
+  margin-right: 10px;
   outline: none;
+  user-select: none;
   width: 25px;
 }
 
@@ -48,6 +50,23 @@
 
       .noSound {
         @include control-button('/no-sound.svg');
+      }
+
+      .volume {
+        background-color: $volume-backround-color;
+        cursor: pointer;
+        float: left;
+        height: 6px;
+        margin-top: 6px;
+        outline: none;
+        user-select: none;
+        width: 100px;
+
+        .volumeBar {
+          background-color: $white-color;
+          border-right: 1px solid $secondary-color;
+          height: 100%;
+        }
       }
     }
   }
