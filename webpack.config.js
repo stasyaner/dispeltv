@@ -41,7 +41,7 @@ let config = {
         use: [
           'style-loader',
           'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'sass-loader?includePaths[]=' + path.resolve(__dirname, './node_modules/compass-mixins/lib'),
+          'sass-loader',
           'postcss-loader',
         ]
       },

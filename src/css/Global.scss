@@ -1,9 +1,30 @@
-@import 'compass/css3';
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/OpenSans.woff2');
+}
 
-@include font-face('Open Sans', url('/OpenSans.woff2'), false, normal, normal);
-@include font-face('Open Sans', url('/OpenSans-Bold.woff2'), false, bold, normal);
-@include font-face('Open Sans', url('/OpenSans-Italic.woff2'), false, normal, italic);
-@include font-face('Open Sans', url('/OpenSans-BoldItalic.woff2'), false, bold, italic);
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: url('/OpenSans-Bold.woff2');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: normal;
+  src: url('/OpenSans-Italic.woff2');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: bold;
+  src: url('/OpenSans-BoldItalic.woff2');
+}
 
 body {
   margin: 0;
