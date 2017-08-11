@@ -17,6 +17,20 @@
 .streamContainer {
   position: relative;
 
+  &:fullscreen {
+    height: 100%;
+    width: 100%;
+
+    .video {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .video {
+    height: calc(100vh - 47px);
+  }
+
   .underlay {
     background-color: $black-color;
     height: 100%;
@@ -31,10 +45,11 @@
     width: 100%;
 
     .overlayControls {
-      bottom: 10px;
+      bottom: 1%;
       height: 20px;
-      left: 10px;
+      left: 1%;
       position: absolute;
+      width: 99%;
 
       .play {
         @include control-button('/play.svg');
@@ -67,6 +82,16 @@
           border-right: 1px solid $secondary-color;
           height: 100%;
         }
+      }
+
+      .fullScreen {
+        @include control-button('/full-screen.svg');
+        float: right;
+      }
+
+      .exitFullScreen {
+        @include control-button('/exit-full-screen.svg');
+        float: right;
       }
     }
   }

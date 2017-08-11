@@ -8,4 +8,6 @@ import './assets/icons/play.svg';
 import './assets/icons/pause.svg';
 import './assets/icons/sound.svg';
 import './assets/icons/no-sound.svg';
+import './assets/icons/full-screen.svg';
+import './assets/icons/exit-full-screen.svg';
 import './assets/captions.vtt';

@@ -2,10 +2,6 @@ import React from 'react';
 import propTypes from 'prop-types';
 import style from '../css/StreamView.scss';
 
-const videoStyle = {
-  height: window.innerHeight - 47,
-};
-
 const StreamView = ({
   isPlaying,
   isSounding,
@@ -14,12 +10,17 @@ const StreamView = ({
   volumeBarWidth,
   volumeBarMouseDownHandler,
   connectHls,
+  isFullScreen,
+  toggleFullScreen,
 }) => (
-  <div className={style.streamContainer}>
+  <div
+    role="presentation"
+    className={style.streamContainer}
+    onClick={toggleFullScreen}
+  >
     <div className={style.underlay}>
       <video
         className={style.video}
-        style={videoStyle}
         ref={connectHls}
       >
         <track kind="captions" src="captions.vtt" />
@@ -50,6 +51,11 @@ const StreamView = ({
             className={style.volumeBar}
           >{' '}</div>
         </div>
+        <div
+          role="button"
+          tabIndex="0"
+          className={isFullScreen ? style.exitFullScreen : style.fullScreen}
+        >{' '}</div>
       </div>
     </div>
   </div>
@@ -63,6 +69,7 @@ StreamView.propTypes = {
   connectHls: propTypes.func.isRequired,
   volumeBarWidth: propTypes.string.isRequired,
   volumeBarMouseDownHandler: propTypes.func.isRequired,
+  toggleFullScreen: propTypes.func.isRequired,
 };
 
 export default StreamView;

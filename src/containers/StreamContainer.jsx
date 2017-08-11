@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import Hls from 'hls.js';
+import fscreen from 'fscreen';
 import StreamView from '../components/StreamView';
 
 class StreamContainer extends Component {
+  static toggleFullScreen(event) {
+    if (event.target.className.toLowerCase().indexOf('fullscreen') !== -1) {
+      const streamContainerDiv = event.currentTarget;
+      if (fscreen.fullscreenElement) {
+        fscreen.exitFullscreen();
+      } else {
+        fscreen.requestFullscreen(streamContainerDiv);
+      }
+    }
+  }
+
   constructor(...restProps) {
     super(...restProps);
 
@@ -15,6 +27,8 @@ class StreamContainer extends Component {
       isVolumeBarMouseDown: false,
       volumeDivWidth: null,
       volumeDivOffsetLeft: null,
+      video: null,
+      isFullScreen: false,
     };
 
     this.togglePlay = this.togglePlay.bind(this);
@@ -26,11 +40,13 @@ class StreamContainer extends Component {
     this.volumeBarMouseUpHandler = this.volumeBarMouseUpHandler.bind(this);
     this.volumeBarMouseMoveHandler = this.volumeBarMouseMoveHandler.bind(this);
     this.connectHls = this.connectHls.bind(this);
+    this.fullScreenChangeHandler = this.fullScreenChangeHandler.bind(this);
   }
 
   componentDidMount() {
     document.addEventListener('mouseup', this.volumeBarMouseUpHandler);
     document.addEventListener('mousemove', this.volumeBarMouseMoveHandler);
+    fscreen.addEventListener('fullscreenchange', this.fullScreenChangeHandler);
   }
 
   togglePlay() {
@@ -87,7 +103,8 @@ class StreamContainer extends Component {
 
   volumeBarMouseMoveHandler(event) {
     if (this.state.isVolumeBarMouseDown) {
-      this.changeVolume(event, this.state.volumeDivWidth, this.state.volumeDivOffsetLeft);
+      this.changeVolume(event, this.state.volumeDivWidth,
+        this.state.volumeDivOffsetLeft);
     }
   }
 
@@ -118,6 +135,10 @@ class StreamContainer extends Component {
     }
   }
 
+  fullScreenChangeHandler() {
+    this.setState({ isFullScreen: fscreen.fullscreenElement !== null });
+  }
+
   render() {
     return (
       <StreamView
@@ -130,6 +151,8 @@ class StreamContainer extends Component {
         volumeBarMouseUpHandler={this.volumeBarMouseUpHandler}
         volumeBarMouseMoveHandler={this.volumeBarMouseMoveHandler}
         connectHls={this.connectHls}
+        isFullScreen={this.state.isFullScreen}
+        toggleFullScreen={StreamContainer.toggleFullScreen}
       />
     );
   }
