@@ -21,7 +21,9 @@ const StreamView = ({
         className={style.video}
         style={videoStyle}
         ref={connectHls}
-      ></video>
+      >
+        <track kind="captions" src="captions.vtt" />
+      </video>
     </div>
     <div className={style.overlay}>
       <div className={style.overlayControls}>

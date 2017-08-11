@@ -45,7 +45,7 @@ let config = {
         ]
       },
       {
-        test: /\.(ttf|eot|svg|woff|woff2)$/,
+        test: /\.(ttf|eot|svg|woff|woff2|vtt)$/,
         use: 'file-loader?name=[name].[ext]',
       },
     ],
