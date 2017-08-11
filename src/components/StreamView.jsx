@@ -69,6 +69,7 @@ StreamView.propTypes = {
   connectHls: propTypes.func.isRequired,
   volumeBarWidth: propTypes.string.isRequired,
   volumeBarMouseDownHandler: propTypes.func.isRequired,
+  isFullScreen: propTypes.bool.isRequired,
   toggleFullScreen: propTypes.func.isRequired,
 };
 
