@@ -1,5 +1,13 @@
 @import 'vars';
 
+@mixin overlay-controls {
+  height: 20px;
+  left: 1%;
+  overflow: hidden;
+  position: absolute;
+  width: 99%;
+}
+
 @mixin control-button($url) {
   background: url($url) no-repeat center center;
   background-size: contain;
@@ -14,7 +22,7 @@
 
 // As using lisp-case is not convenient in js with css-modules
 // sass-lint:disable class-name-format
-.streamContainer {
+.streamView {
   position: relative;
 
   &:fullscreen {
@@ -40,16 +48,35 @@
 
   .overlay {
     height: 100%;
+    overflow: hidden;
     position: absolute;
     top: 0;
     width: 100%;
 
+    // &:hover {
+    //   .overlayControls {
+    //     bottom: 1%;
+    //   }
+    // }
+
     .overlayControls {
-      bottom: 1%;
+      bottom: -3%;
       height: 20px;
       left: 1%;
+      overflow: hidden;
       position: absolute;
       width: 99%;
+
+      &.hided {
+        bottom: -3%;
+        transition: bottom .5s ease-out;
+      }
+
+      &.shown,
+      &:hover {
+        bottom: 1%;
+        transition: bottom .2s ease-in;
+      }
 
       .play {
         @include control-button('/play.svg');

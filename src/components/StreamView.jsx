@@ -12,11 +12,14 @@ const StreamView = ({
   connectHls,
   isFullScreen,
   toggleFullScreen,
+  showOverlayContent,
+  putStreamViewDivToState,
+  isOverlayContentShown,
 }) => (
   <div
     role="presentation"
-    className={style.streamContainer}
-    onClick={toggleFullScreen}
+    className={style.streamView}
+    ref={putStreamViewDivToState}
   >
     <div className={style.underlay}>
       <video
@@ -26,8 +29,15 @@ const StreamView = ({
         <track kind="captions" src="captions.vtt" />
       </video>
     </div>
-    <div className={style.overlay}>
-      <div className={style.overlayControls}>
+    <div
+      className={style.overlay}
+      onMouseMove={showOverlayContent}
+    >
+      <div
+        className={
+          `${style.overlayControls} ${isOverlayContentShown ? style.shown : style.hided}`
+        }
+      >
         <div
           role="button"
           tabIndex="0"
@@ -55,6 +65,7 @@ const StreamView = ({
           role="button"
           tabIndex="0"
           className={isFullScreen ? style.exitFullScreen : style.fullScreen}
+          onClick={toggleFullScreen}
         >{' '}</div>
       </div>
     </div>
@@ -71,6 +82,9 @@ StreamView.propTypes = {
   volumeBarMouseDownHandler: propTypes.func.isRequired,
   isFullScreen: propTypes.bool.isRequired,
   toggleFullScreen: propTypes.func.isRequired,
+  showOverlayContent: propTypes.func.isRequired,
+  putStreamViewDivToState: propTypes.func.isRequired,
+  isOverlayContentShown: propTypes.func.isRequired,
 };
 
 export default StreamView;

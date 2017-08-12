@@ -5,17 +5,6 @@ import fscreen from 'fscreen';
 import StreamView from '../components/StreamView';
 
 class StreamContainer extends Component {
-  static toggleFullScreen(event) {
-    if (event.target.className.toLowerCase().indexOf('fullscreen') !== -1) {
-      const streamContainerDiv = event.currentTarget;
-      if (fscreen.fullscreenElement) {
-        fscreen.exitFullscreen();
-      } else {
-        fscreen.requestFullscreen(streamContainerDiv);
-      }
-    }
-  }
-
   constructor(...restProps) {
     super(...restProps);
 
@@ -29,6 +18,9 @@ class StreamContainer extends Component {
       volumeDivOffsetLeft: null,
       video: null,
       isFullScreen: false,
+      isOverlayContentShown: false,
+      overlayContentTimeoutId: null,
+      streamViewDiv: null,
     };
 
     this.togglePlay = this.togglePlay.bind(this);
@@ -41,6 +33,9 @@ class StreamContainer extends Component {
     this.volumeBarMouseMoveHandler = this.volumeBarMouseMoveHandler.bind(this);
     this.connectHls = this.connectHls.bind(this);
     this.fullScreenChangeHandler = this.fullScreenChangeHandler.bind(this);
+    this.toggleFullScreen = this.toggleFullScreen.bind(this);
+    this.showOverlayContent = this.showOverlayContent.bind(this);
+    this.putStreamViewDivToState = this.putStreamViewDivToState.bind(this);
   }
 
   componentDidMount() {
@@ -139,6 +134,34 @@ class StreamContainer extends Component {
     this.setState({ isFullScreen: fscreen.fullscreenElement !== null });
   }
 
+  showOverlayContent() {
+    if (this.state.overlayContentTimeoutId) {
+      clearTimeout(this.state.overlayContentTimeoutId);
+      this.setState({ overlayContentTimeoutId: null });
+    }
+    const overlayContentTimeoutId = setTimeout(() => {
+      this.setState({ isOverlayContentShown: false });
+    }, 1000);
+    this.setState({
+      isOverlayContentShown: true,
+      overlayContentTimeoutId,
+    });
+  }
+
+  putStreamViewDivToState(streamViewDiv) {
+    this.setState({
+      streamViewDiv,
+    });
+  }
+
+  toggleFullScreen() {
+    if (fscreen.fullscreenElement) {
+      fscreen.exitFullscreen();
+    } else {
+      fscreen.requestFullscreen(this.state.streamViewDiv);
+    }
+  }
+
   render() {
     return (
       <StreamView
@@ -152,7 +175,10 @@ class StreamContainer extends Component {
         volumeBarMouseMoveHandler={this.volumeBarMouseMoveHandler}
         connectHls={this.connectHls}
         isFullScreen={this.state.isFullScreen}
-        toggleFullScreen={StreamContainer.toggleFullScreen}
+        toggleFullScreen={this.toggleFullScreen}
+        isOverlayContentShown={this.state.isOverlayContentShown}
+        showOverlayContent={this.showOverlayContent}
+        putStreamViewDivToState={this.putStreamViewDivToState}
       />
     );
   }
