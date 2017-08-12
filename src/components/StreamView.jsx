@@ -32,6 +32,7 @@ const StreamView = ({
     <div
       className={style.overlay}
       onMouseMove={showOverlayContent}
+      onDoubleClick={toggleFullScreen}
     >
       <div
         className={
